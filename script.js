@@ -35,8 +35,8 @@ const displayColors=()=>{
     MultipleColorDiv.style.display='grid';
     MultipleColorDiv.style.gridTemplateColumns='repeat(4, 1fr)'
     MultipleColorDiv.style.margin='20px auto';
-    MultipleColorDiv.style.width='500px';
-    MultipleColorDiv.style.height='300px';
+    MultipleColorDiv.style.width='100%';
+    MultipleColorDiv.style.height='80%';
     MultipleColorDiv.style.gap='10px';
     MultipleColorDiv.style.gridAutoRows = '90px';
     MultipleColorDiv.style.alignContent = 'start';
@@ -141,6 +141,7 @@ const displayColors=()=>{
     MultipleColorDiv.append(mcb1, mcb2, mcb3, mcb4, mcb5, mcb6, mcb7, mcb8, mcb9, mcb10, mcb11, mcb12);
 
     const btnDiv = document.createElement('div');
+    btnDiv.setAttribute('class', 'btnDiv');
     btnDiv.style.display = 'flex';
     btnDiv.style.flexDirection='row';
     btnDiv.style.justifyContent = 'space-between';
@@ -297,5 +298,53 @@ const displayColors=()=>{
     secondDiv.append(MultipleColorDiv,btnDiv);
     mainDiv.append(secondDiv);
     container.appendChild(mainDiv);
+
+
+     // Function to update styles based on screen width
+    const updateStyles = () => {
+        const screenWidth = window.innerWidth;
+
+        if (screenWidth>450 && screenWidth<= 953) { 
+            mainDiv.style.flexDirection = 'column';
+            mainDiv.style.alignItems = 'center';
+            mainDiv.style.margin = '10px';
+            SingleColorDiv.style.width = '80%';
+            SingleColorDiv.style.height = '300px';
+            SingleColorDiv.style.padding = '40px';
+            SingleColorDiv.style.marginTop = '3px';
+            MultipleColorDiv.style.width = '100%';
+            MultipleColorDiv.style.gridTemplateColumns = 'repeat(3, 1fr)';
+            btnDiv.style.flexDirection='column';
+            btnDiv.style.gap='15px';
+            secondDiv.style.width='100%';
+        } 
+        else if(screenWidth <= 460){
+            SingleColorDiv.style.width = '75%'
+            mainDiv.style.textAlign = 'center';
+        }
+        else { // For larger screens
+            mainDiv.style.margin='20px 5px 10px 5px';
+            mainDiv.style.display='flex';
+            mainDiv.style.flexDirection='row';
+            mainDiv.style.gap='20px';
+            SingleColorDiv.style.padding='50px';
+            SingleColorDiv.style.width='500px';
+            SingleColorDiv.style.height='300px';
+            SingleColorDiv.style.borderRadius='10px';
+            MultipleColorDiv.style.display='grid';
+            MultipleColorDiv.style.gridTemplateColumns='repeat(4, 1fr)'
+            MultipleColorDiv.style.margin='20px auto';
+            MultipleColorDiv.style.width='100%';
+            MultipleColorDiv.style.height='80%';
+            MultipleColorDiv.style.gap='10px';
+            MultipleColorDiv.style.gridAutoRows = '90px';
+            MultipleColorDiv.style.alignContent = 'start';
+            btnDiv.style.flexDirection='row';
+            secondDiv.style.width='60%';
+        }
+    };
+    updateStyles();
+    window.addEventListener('resize', updateStyles);
 }
+
 displayColors();
